@@ -15,30 +15,31 @@ public class Ementa {
 
     private List<Pizza> pizzas;
 
-    public Ementa(String designaçao, String descriçao,int numPizzasNaoPertence,LocalDate dataInicio,LocalDate dataFim,int numPizzasPertence){
+    public Ementa(String designaçao, String descriçao,LocalDate dataInicio,LocalDate dataFim){
         this.codigo = nextID++;
         this.designaçao = designaçao;
         this.descriçao = descriçao; 
         this.dataInicio = dataInicio;
-        this.dataFim = dataFim;
-        this.numPizzasPertence = numPizzasPertence;
-        this.numPizzasNaoPertence = numPizzasNaoPertence;
+        this.dataFim = dataInicio;
         this.pizzas = new ArrayList<>();
     }
     public void addPizza(Pizza pizza){
         this.pizzas.add(pizza);
         if(isPizzaInEmenta(pizza)){
+            this.numPizzasPertence++;
+        }else{
+            this.numPizzasNaoPertence++;
         }
     }
     public boolean isPizzaInEmenta(Pizza pizza){
         LocalDate pizzaInicio = pizza.getDataInicio();
         LocalDate pizzaFim = pizza.getDataFim();
-        return (pizzaInicio.isAfter(dataInicio)|| pizzaInicio.isEqual(dataFim));
+        return (pizzaInicio.isAfter(dataInicio)|| pizzaInicio.isEqual(dataFim)&& pizzaFim == null || pizzaFim.isBefore(dataFim));
     }
     public void printEmenta(){
         System.out.println("Codigo ementa: "+codigo+"\tDescriçao: "+descriçao);
-        System.out.println("data inicio: "+dataInicio+"DATA fim emennta: "+dataFim);
-        System.out.println("Numero pizzas EMENTA: "+numPizzasPertence+"Num pizzas NAO PERTENCE: "+numPizzasNaoPertence);
+        System.out.println("data inicio: "+dataInicio+"\tDATA fim emennta: "+dataFim);
+        System.out.println("Numero pizzas EMENTA: "+numPizzasPertence+"\tNum pizzas NAO PERTENCE: "+numPizzasNaoPertence);
     }
 
 }
