@@ -14,5 +14,22 @@ public class Ingrediente {
         this.origem = origem;
         this.numKcal = numKcal;
     }
+    public static String ingredienteToString(origemIngredientes origem){
+        switch(origem){
+            case ANIMAL :
+            return "Origem animal";
+            case VEGETAL :
+            return "Origem vegetal";
+            case MINERAL :
+            return "Mineral";
+            default:
+            throw new IllegalArgumentException("tamanho invalido");
+        }
+    }
+
+    public void printIngrediente(){
+        System.out.println("Codigo:"+codigo+"\tNome: "+nome);
+        System.out.println("Origem: "+origem+"NumKcal: "+numKcal);
+    }
 
 }
