@@ -107,15 +107,14 @@ public class Pizza {
                 throw new IllegalArgumentException("Tamanho pizza inválido.");
         }
     }
-
+    public void printAllIngredientes(){
+        for (int i = 0; i < numIngredientes; i++) {
+            coleçaoIngredientes[i].printIngrediente();
+        }
+    }
     public void printPizza() {
         System.out.println("Codigo Pizza: " + codigoPizza + " Nome: " + nomePizza);
         System.out.println("Descriçao Pizza: " + descriçaoPizza + " Tamanho: " + tamanhopizza);
         System.out.println("Preço: " + preço + " Qtd ingredientes: " + numIngredientes);
-
-        for (int i = 0; i < numIngredientes; i++) {
-            coleçaoIngredientes[i].printIngrediente();
-        }
-        System.out.println();
     }
 }
